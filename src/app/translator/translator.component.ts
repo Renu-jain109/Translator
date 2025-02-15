@@ -42,8 +42,7 @@ translate(){
     text : this.data.textSource_language
   };
   this.translatorService.formData(body).subscribe((res:any)=>{
-   let x = Object.values(res.data).join('');
-   this.translatedText = x;      
+       this.translatedText = res.data.translatedText;      
   })  
 };
 
