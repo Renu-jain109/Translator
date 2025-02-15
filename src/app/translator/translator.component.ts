@@ -24,8 +24,8 @@ export class TranslatorComponent implements OnInit {
 
 data = {
 textSource_language:'',
-source_language: 'af', // Default: English
-target_language:'af'  // Default: Hindi
+source_language: 'af', 
+target_language:'af'  
 }
 translatedText: string = '';
 textYN = false;
