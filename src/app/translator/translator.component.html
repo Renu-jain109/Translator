@@ -241,7 +241,7 @@
         <div class="h-fit flex flex-row gap-10 justify-center">
             <div class="relative">
                 <textarea class="w-[335px] p-4 border rounded-lg h-64 outline-0" placeholder="Enter text"
-                    [(ngModel)]="data.textSource_language" (input)="addText($event)">
+                    [(ngModel)]="data.textSource_language" (input)="addText($event)" (keydown.enter)="translate()">
                 </textarea>
                 <fa-icon [icon]="['fas','xmark']" class="absolute right-4 top-3" (click)="deleteText()"
                     *ngIf="textYN"></fa-icon>
