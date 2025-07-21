@@ -9,11 +9,10 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
-  selector: 'app-translator',
-  standalone: true,
-  imports: [CommonModule,FormsModule,FontAwesomeModule],
-  templateUrl: './translator.component.html',
-  styleUrl: './translator.component.css'
+    selector: 'app-translator',
+    imports: [CommonModule, FormsModule, FontAwesomeModule],
+    templateUrl: './translator.component.html',
+    styleUrl: './translator.component.css'
 })
 export class TranslatorComponent implements OnInit {
 
