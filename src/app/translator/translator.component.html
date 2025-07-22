@@ -8,7 +8,7 @@
         class="w-full max-w-3xl text-xl mx-auto bg-white p-6 rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.2)] mt-10 flex flex-col gap-4 p-6">
 
         <div class="flex flex-row gap-3 justify-center">
-            <select class="border p-2 rounded-lg outline-0 w-96" [(ngModel)]="data.source_language">
+            <select class="border p-2 rounded-lg outline-0 md:w-[335px] w-[270px]" [(ngModel)]="data.source_language">
                 <option value="af">Afrikaans</option>
                 <option value="sq">Albanian</option>
                 <option value="am">Amharic</option>
@@ -123,7 +123,7 @@
             </select>
             <span class="text-3xl">&#8646;
             </span>
-            <select class="border p-2 rounded-lg outline-0 w-96" [(ngModel)]="data.target_language">
+            <select class="border p-2 rounded-lg outline-0 md:w-[335px] w-[270px]" [(ngModel)]="data.target_language">
                 <option value="af">Afrikaans</option>
                 <option value="sq">Albanian</option>
                 <option value="am">Amharic</option>
@@ -240,14 +240,14 @@
 
         <div class="h-fit flex flex-row gap-10 justify-center">
             <div class="relative">
-                <textarea class="w-[335px] p-4 border rounded-lg h-64 outline-0" placeholder="Enter text"
+                <textarea class="md:w-[335px] w-[270px] p-4 border rounded-lg h-64 outline-0" placeholder="Enter text"
                     [(ngModel)]="data.textSource_language" (input)="addText($event)" (keydown.enter)="translate()">
                 </textarea>
                 <fa-icon [icon]="['fas','xmark']" class="absolute right-4 top-3" (click)="deleteText()"
                     *ngIf="textYN"></fa-icon>
             </div>
             <div class="relative">
-                <textarea class="w-[335px] p-4 border rounded-lg h-64 outline-0" placeholder="Translation"
+                <textarea class="md:w-[335px] w-[270px] p-4 border rounded-lg h-64 outline-0" placeholder="Translation"
                     [value]="translatedText">
                 </textarea>
             </div>
