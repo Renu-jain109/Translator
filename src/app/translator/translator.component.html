@@ -1,261 +1,1507 @@
-<div class="container w-full mx-auto text-center flex flex-col gap-2">
+<div class="min-h-screen flex flex-col studio-grid-bg">
+  <!-- Top Bar (3-Zone Contract) -->
+  <header class="border-b border-black/10 dark:border-white/10 bg-[#F5F3EE]/95 dark:bg-[#090A0F]/95">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
+      <!-- Zone 1: Brand Icon + Wordmark -->
+      <a
+        href="#studio"
+        (click)="setTab('studio'); $event.preventDefault()"
+        class="inline-flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-[#121316] dark:text-white whitespace-nowrap shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28] rounded"
+      >
+        <svg aria-hidden="true" viewBox="0 0 64 64" fill="none" class="w-7 h-7 shrink-0">
+          <rect x="2" y="2" width="60" height="60" rx="15" fill="#11131A" stroke="#282D3D" stroke-width="2"/>
+          <rect x="10" y="10" width="25" height="25" rx="6.5" fill="#FF4F28"/>
+          <path d="M22.5 16L17 29.5M22.5 16L28 29.5M18.9 25.2H26.1" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="29" y="29" width="25" height="25" rx="6.5" fill="#F5F3EE"/>
+          <path d="M41.5 34.5V37.2M35 37.5H48M37.2 38C38.6 42.6 41.8 45.9 46.8 47.6M45.8 38C44.4 42.6 41.2 45.9 36.2 47.6" stroke="#11131A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Lexis</span>
+      </a>
 
-    <div class="head text-center">
-        <h1 class="text-5xl font-bold text-blue-500 text-center mt-6">Text Translator</h1>
-    </div>
+      <!-- Zone 2: Clean Single-Line Navigation Links -->
+      <nav class="flex items-center gap-5 sm:gap-7 overflow-x-auto" aria-label="Primary navigation">
+        <button
+          type="button"
+          (click)="setTab('studio')"
+          class="py-1.5 text-sm font-medium whitespace-nowrap shrink-0 border-b-2 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28] rounded-t"
+          [class]="activeTab() === 'studio'
+            ? 'border-[#FF4F28] text-[#121316] dark:text-white'
+            : 'border-transparent text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white'"
+        >
+          Studio
+        </button>
 
-    <div
-        class="w-full max-w-3xl text-xl mx-auto bg-white p-6 rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.2)] mt-10 flex flex-col gap-4 p-6">
+        <button
+          type="button"
+          (click)="setTab('compare')"
+          class="py-1.5 text-sm font-medium whitespace-nowrap shrink-0 border-b-2 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28] rounded-t"
+          [class]="activeTab() === 'compare'
+            ? 'border-[#FF4F28] text-[#121316] dark:text-white'
+            : 'border-transparent text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white'"
+        >
+          Compare 1→4
+        </button>
 
-        <div class="flex flex-row gap-3 justify-center">
-            <select class="border p-2 rounded-lg outline-0 md:w-[335px] w-[270px]" [(ngModel)]="data.source_language">
-                <option value="af">Afrikaans</option>
-                <option value="sq">Albanian</option>
-                <option value="am">Amharic</option>
-                <option value="ar">Arabic</option>
-                <option value="hy">Armenian</option>
-                <option value="az">Azerbaijani</option>
-                <option value="eu">Basque</option>
-                <option value="be">Belarusian</option>
-                <option value="bn">Bengali</option>
-                <option value="bs">Bosnian</option>
-                <option value="bg">Bulgarian</option>
-                <option value="ca">Catalan</option>
-                <option value="ceb">Cebuano</option>
-                <option value="ny">Chichewa</option>
-                <option value="zh-CN">Chinese (Simplified)</option>
-                <option value="zh-TW">Chinese (Traditional)</option>
-                <option value="co">Corsican</option>
-                <option value="hr">Croatian</option>
-                <option value="cs">Czech</option>
-                <option value="da">Danish</option>
-                <option value="nl">Dutch</option>
-                <option value="en">English</option>
-                <option value="eo">Esperanto</option>
-                <option value="et">Estonian</option>
-                <option value="tl">Filipino</option>
-                <option value="fi">Finnish</option>
-                <option value="fr">French</option>
-                <option value="fy">Frisian</option>
-                <option value="gl">Galician</option>
-                <option value="ka">Georgian</option>
-                <option value="de">German</option>
-                <option value="el">Greek</option>
-                <option value="gu">Gujarati</option>
-                <option value="ht">Haitian Creole</option>
-                <option value="ha">Hausa</option>
-                <option value="haw">Hawaiian</option>
-                <option value="iw">Hebrew</option>
-                <option value="hi">Hindi</option>
-                <option value="hmn">Hmong</option>
-                <option value="hu">Hungarian</option>
-                <option value="is">Icelandic</option>
-                <option value="ig">Igbo</option>
-                <option value="id">Indonesian</option>
-                <option value="ga">Irish</option>
-                <option value="it">Italian</option>
-                <option value="ja">Japanese</option>
-                <option value="jw">Javanese</option>
-                <option value="kn">Kannada</option>
-                <option value="kk">Kazakh</option>
-                <option value="km">Khmer</option>
-                <option value="rw">Kinyarwanda</option>
-                <option value="ko">Korean</option>
-                <option value="ku">Kurdish (Kurmanji)</option>
-                <option value="ky">Kyrgyz</option>
-                <option value="lo">Lao</option>
-                <option value="la">Latin</option>
-                <option value="lv">Latvian</option>
-                <option value="lt">Lithuanian</option>
-                <option value="lb">Luxembourgish</option>
-                <option value="mk">Macedonian</option>
-                <option value="mg">Malagasy</option>
-                <option value="ms">Malay</option>
-                <option value="ml">Malayalam</option>
-                <option value="mt">Maltese</option>
-                <option value="mi">Maori</option>
-                <option value="mr">Marathi</option>
-                <option value="mn">Mongolian</option>
-                <option value="my">Myanmar (Burmese)</option>
-                <option value="ne">Nepali</option>
-                <option value="no">Norwegian</option>
-                <option value="or">Odia (Oriya)</option>
-                <option value="ps">Pashto</option>
-                <option value="fa">Persian</option>
-                <option value="pl">Polish</option>
-                <option value="pt">Portuguese</option>
-                <option value="c">Punjabi</option>
-                <option value="ro">Romanian</option>
-                <option value="ru">Russian</option>
-                <option value="sm">Samoan</option>
-                <option value="gd">Scots Gaelic</option>
-                <option value="sr">Serbian</option>
-                <option value="st">Sesotho</option>
-                <option value="sn">Shona</option>
-                <option value="sd">Sindhi</option>
-                <option value="si">Sinhala</option>
-                <option value="sk">Slovak</option>
-                <option value="sl">Slovenian</option>
-                <option value="so">Somali</option>
-                <option value="es">Spanish</option>
-                <option value="su">Sundanese</option>
-                <option value="sw">Swahili</option>
-                <option value="sv">Swedish</option>
-                <option value="tg">Tajik</option>
-                <option value="ta">Tamil</option>
-                <option value="tt">Tatar</option>
-                <option value="te">Telugu</option>
-                <option value="th">Thai</option>
-                <option value="tr">Turkish</option>
-                <option value="tk">Turkmen</option>
-                <option value="uk">Ukrainian</option>
-                <option value="ur">Urdu</option>
-                <option value="ug">Uyghur</option>
-                <option value="uz">Uzbek</option>
-                <option value="vi">Vietnamese</option>
-                <option value="cy">Welsh</option>
-                <option value="xh">Xhosa</option>
-                <option value="yi">Yiddish</option>
-                <option value="yo">Yoruba</option>
-                <option value="zu">Zulu</option>
-                <option value="he">Hebrew</option>
-                <option value="zh">Chinese (Simplified)</option>
-            </select>
-            <span class="text-3xl">&#8646;
+        <button
+          type="button"
+          (click)="setTab('history')"
+          class="py-1.5 text-sm font-medium whitespace-nowrap shrink-0 border-b-2 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28] rounded-t"
+          [class]="activeTab() === 'history'
+            ? 'border-[#FF4F28] text-[#121316] dark:text-white'
+            : 'border-transparent text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white'"
+        >
+          History
+          @if (historyEntries().length > 0) {
+            <span class="ml-1 font-mono tabular-nums text-xs text-black/40 dark:text-white/40">
+              {{ historyEntries().length }}
             </span>
-            <select class="border p-2 rounded-lg outline-0 md:w-[335px] w-[270px]" [(ngModel)]="data.target_language">
-                <option value="af">Afrikaans</option>
-                <option value="sq">Albanian</option>
-                <option value="am">Amharic</option>
-                <option value="ar">Arabic</option>
-                <option value="hy">Armenian</option>
-                <option value="az">Azerbaijani</option>
-                <option value="eu">Basque</option>
-                <option value="be">Belarusian</option>
-                <option value="bn">Bengali</option>
-                <option value="bs">Bosnian</option>
-                <option value="bg">Bulgarian</option>
-                <option value="ca">Catalan</option>
-                <option value="ceb">Cebuano</option>
-                <option value="ny">Chichewa</option>
-                <option value="zh-CN">Chinese (Simplified)</option>
-                <option value="zh-TW">Chinese (Traditional)</option>
-                <option value="co">Corsican</option>
-                <option value="hr">Croatian</option>
-                <option value="cs">Czech</option>
-                <option value="da">Danish</option>
-                <option value="nl">Dutch</option>
-                <option value="en">English</option>
-                <option value="eo">Esperanto</option>
-                <option value="et">Estonian</option>
-                <option value="tl">Filipino</option>
-                <option value="fi">Finnish</option>
-                <option value="fr">French</option>
-                <option value="fy">Frisian</option>
-                <option value="gl">Galician</option>
-                <option value="ka">Georgian</option>
-                <option value="de">German</option>
-                <option value="el">Greek</option>
-                <option value="gu">Gujarati</option>
-                <option value="ht">Haitian Creole</option>
-                <option value="ha">Hausa</option>
-                <option value="haw">Hawaiian</option>
-                <option value="iw">Hebrew</option>
-                <option value="hi">Hindi</option>
-                <option value="hmn">Hmong</option>
-                <option value="hu">Hungarian</option>
-                <option value="is">Icelandic</option>
-                <option value="ig">Igbo</option>
-                <option value="id">Indonesian</option>
-                <option value="ga">Irish</option>
-                <option value="it">Italian</option>
-                <option value="ja">Japanese</option>
-                <option value="jw">Javanese</option>
-                <option value="kn">Kannada</option>
-                <option value="kk">Kazakh</option>
-                <option value="km">Khmer</option>
-                <option value="rw">Kinyarwanda</option>
-                <option value="ko">Korean</option>
-                <option value="ku">Kurdish (Kurmanji)</option>
-                <option value="ky">Kyrgyz</option>
-                <option value="lo">Lao</option>
-                <option value="la">Latin</option>
-                <option value="lv">Latvian</option>
-                <option value="lt">Lithuanian</option>
-                <option value="lb">Luxembourgish</option>
-                <option value="mk">Macedonian</option>
-                <option value="mg">Malagasy</option>
-                <option value="ms">Malay</option>
-                <option value="ml">Malayalam</option>
-                <option value="mt">Maltese</option>
-                <option value="mi">Maori</option>
-                <option value="mr">Marathi</option>
-                <option value="mn">Mongolian</option>
-                <option value="my">Myanmar (Burmese)</option>
-                <option value="ne">Nepali</option>
-                <option value="no">Norwegian</option>
-                <option value="or">Odia (Oriya)</option>
-                <option value="ps">Pashto</option>
-                <option value="fa">Persian</option>
-                <option value="pl">Polish</option>
-                <option value="pt">Portuguese</option>
-                <option value="c">Punjabi</option>
-                <option value="ro">Romanian</option>
-                <option value="ru">Russian</option>
-                <option value="sm">Samoan</option>
-                <option value="gd">Scots Gaelic</option>
-                <option value="sr">Serbian</option>
-                <option value="st">Sesotho</option>
-                <option value="sn">Shona</option>
-                <option value="sd">Sindhi</option>
-                <option value="si">Sinhala</option>
-                <option value="sk">Slovak</option>
-                <option value="sl">Slovenian</option>
-                <option value="so">Somali</option>
-                <option value="es">Spanish</option>
-                <option value="su">Sundanese</option>
-                <option value="sw">Swahili</option>
-                <option value="sv">Swedish</option>
-                <option value="tg">Tajik</option>
-                <option value="ta">Tamil</option>
-                <option value="tt">Tatar</option>
-                <option value="te">Telugu</option>
-                <option value="th">Thai</option>
-                <option value="tr">Turkish</option>
-                <option value="tk">Turkmen</option>
-                <option value="uk">Ukrainian</option>
-                <option value="ur">Urdu</option>
-                <option value="ug">Uyghur</option>
-                <option value="uz">Uzbek</option>
-                <option value="vi">Vietnamese</option>
-                <option value="cy">Welsh</option>
-                <option value="xh">Xhosa</option>
-                <option value="yi">Yiddish</option>
-                <option value="yo">Yoruba</option>
-                <option value="zu">Zulu</option>
-                <option value="he">Hebrew</option>
-                <option value="zh">Chinese (Simplified)</option>
-            </select>
-        </div>
+          }
+        </button>
 
-        <div class="h-fit flex flex-row gap-10 justify-center">
-            <div class="relative">
-                <textarea class="md:w-[335px] w-[270px] p-4 border rounded-lg h-64 outline-0" placeholder="Enter text"
-                    [(ngModel)]="data.textSource_language" (input)="addText($event)" (keydown.enter)="translate()">
-                </textarea>
-                <fa-icon [icon]="['fas','xmark']" class="absolute right-4 top-3" (click)="deleteText()"
-                    *ngIf="textYN"></fa-icon>
-            </div>
-            <div class="relative">
-                <textarea class="md:w-[335px] w-[270px] p-4 border rounded-lg h-64 outline-0" placeholder="Translation"
-                    [value]="translatedText">
-                </textarea>
-            </div>
-        </div>
+        <button
+          type="button"
+          (click)="setTab('phrasebook')"
+          class="py-1.5 text-sm font-medium whitespace-nowrap shrink-0 border-b-2 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28] rounded-t"
+          [class]="activeTab() === 'phrasebook'
+            ? 'border-[#FF4F28] text-[#121316] dark:text-white'
+            : 'border-transparent text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white'"
+        >
+          Phrasebook
+          @if (favoriteEntries().length > 0) {
+            <span class="ml-1 font-mono tabular-nums text-xs text-black/40 dark:text-white/40">
+              {{ favoriteEntries().length }}
+            </span>
+          }
+        </button>
+      </nav>
 
-        <div class="">
-            <button class="w-full bg-blue-500 text-white p-2 rounded-lg mt-4 hover:bg-blue-500" (click)="translate()">
-                Translate</button>
-        </div>
+      <!-- Zone 3: Single Primary Header Action -->
+      <div class="shrink-0">
+        <button
+          type="button"
+          (click)="toggleTheme()"
+          [attr.aria-label]="darkMode() ? 'Switch to paper light theme' : 'Switch to obsidian dark theme'"
+          class="min-h-[40px] px-3.5 py-2 inline-flex items-center gap-2 rounded-lg border border-black/15 dark:border-white/15 bg-white dark:bg-[#14161E] hover:border-black/30 dark:hover:border-white/30 text-xs sm:text-sm font-medium text-[#121316] dark:text-[#F4F4F6] whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+        >
+          <fa-icon [icon]="darkMode() ? faSun : faMoon" class="text-xs text-[#FF4F28]"></fa-icon>
+          <span class="hidden sm:inline">{{ darkMode() ? 'Paper light' : 'Obsidian' }}</span>
+        </button>
+      </div>
     </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-9">
+    @if (activeTab() === 'studio') {
+      <!-- Editorial Workspace Header + Scenario Strip -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-7">
+        <div class="lg:col-span-7">
+          <p class="font-mono text-xs text-[#FF4F28] mb-2">
+            108 languages <span aria-hidden="true">·</span> Live clause alignment <span aria-hidden="true">·</span> Speech synthesis
+          </p>
+          <h1 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#121316] dark:text-white text-balance">
+            Translate across scripts with precision.
+          </h1>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-wrap items-center lg:justify-end gap-2.5">
+          <button
+            type="button"
+            (click)="togglePronunciation()"
+            [attr.aria-pressed]="showPronunciation()"
+            class="min-h-[40px] px-3.5 py-2 inline-flex items-center gap-2 rounded-lg border text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+            [class]="showPronunciation()
+              ? 'border-[#FF4F28]/50 bg-[#FF4F28]/10 text-[#E03E1A] dark:text-[#FF7052]'
+              : 'border-black/10 dark:border-white/10 bg-white/90 dark:bg-[#11131A] text-black/70 dark:text-white/75 hover:border-black/25 dark:hover:border-white/25'"
+          >
+            <fa-icon [icon]="faVolumeHigh" class="text-[11px]"></fa-icon>
+            <span>Pronunciation: {{ showPronunciation() ? 'On' : 'Off' }}</span>
+          </button>
+
+          <button
+            type="button"
+            (click)="openCommandPalette()"
+            class="min-h-[40px] px-3.5 py-2 inline-flex items-center gap-2.5 rounded-lg border border-black/10 dark:border-white/10 bg-white/90 dark:bg-[#11131A] hover:border-black/25 dark:hover:border-white/25 text-xs font-medium text-black/70 dark:text-white/75 whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+          >
+            <fa-icon [icon]="faMagnifyingGlass" class="text-[11px] text-black/45 dark:text-white/45"></fa-icon>
+            <span>Command</span>
+            <kbd class="font-mono text-[11px] text-black/45 dark:text-white/45">⌘K</kbd>
+          </button>
+
+          <div
+            class="inline-flex items-center p-1 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10"
+            role="group"
+            aria-label="Translation mode"
+          >
+            <button
+              type="button"
+              (click)="setMode('instant')"
+              class="min-h-[34px] px-3 py-1 text-xs font-medium rounded-md whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+              [class]="translationMode() === 'instant'
+                ? 'bg-white dark:bg-[#1B1E28] text-[#121316] dark:text-white shadow-sm'
+                : 'text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white'"
+            >
+              Instant
+            </button>
+            <button
+              type="button"
+              (click)="setMode('manual')"
+              class="min-h-[34px] px-3 py-1 text-xs font-medium rounded-md whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+              [class]="translationMode() === 'manual'
+                ? 'bg-white dark:bg-[#1B1E28] text-[#121316] dark:text-white shadow-sm'
+                : 'text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white'"
+            >
+              Manual
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Architectural Translation Stage -->
+      <section
+        aria-label="Translation studio"
+        class="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] shadow-sm overflow-visible"
+      >
+        <!-- Language Selection Rail -->
+        <div class="px-4 sm:px-6 py-4 border-b border-black/10 dark:border-white/10 flex flex-col lg:flex-row lg:items-center gap-3">
+          <!-- Source Picker + Quick Picks -->
+          <div class="flex-1 flex flex-wrap items-center gap-2.5 min-w-0">
+            <div class="w-full sm:w-56 shrink-0">
+              <app-language-picker
+                [value]="sourceLanguage()"
+                [allowAuto]="true"
+                align="left"
+                ariaLabel="Source language"
+                (valueChange)="onSourceLanguageChange($event)"
+              />
+            </div>
+
+            <div class="hidden xl:flex items-center gap-1">
+              @for (pick of sourceQuickPicks; track pick.code) {
+                <button
+                  type="button"
+                  (click)="onSourceLanguageChange(pick.code)"
+                  class="min-h-[34px] px-2.5 py-1 text-xs font-medium rounded-md whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                  [class]="sourceLanguage() === pick.code
+                    ? 'text-[#E03E1A] dark:text-[#FF7052] bg-[#FF4F28]/10'
+                    : 'text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'"
+                >
+                  {{ pick.label }}
+                </button>
+              }
+            </div>
+
+            @if (sourceLanguage() === 'auto' && detectedLanguage()) {
+              <span class="font-mono text-xs text-black/55 dark:text-white/55 whitespace-nowrap">
+                Detected: <strong class="font-sans font-semibold text-[#121316] dark:text-white">{{ detectedLanguage()?.name }}</strong>
+              </span>
+            }
+          </div>
+
+          <!-- Swap Button -->
+          <div class="flex items-center justify-center shrink-0">
+            <button
+              type="button"
+              (click)="swapLanguages()"
+              [disabled]="!canSwap()"
+              [attr.title]="canSwap() ? 'Swap languages (Ctrl+Shift+S)' : 'Translate text first to detect source language'"
+              aria-label="Swap source and target languages"
+              class="min-w-[42px] min-h-[42px] px-3 inline-flex items-center justify-center rounded-lg border border-black/10 dark:border-white/10 bg-[#F5F3EE] dark:bg-[#0B0C11] hover:border-[#FF4F28]/60 text-[#121316] dark:text-white disabled:opacity-35 disabled:cursor-not-allowed transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+            >
+              <fa-icon
+                [icon]="faArrowRightArrowLeft"
+                class="text-sm transition-transform duration-200"
+                [class.rotate-180]="swapRotated()"
+              ></fa-icon>
+            </button>
+          </div>
+
+          <!-- Target Picker + Quick Picks -->
+          <div class="flex-1 flex flex-wrap items-center justify-end gap-2.5 min-w-0">
+            <div class="hidden xl:flex items-center gap-1">
+              @for (pick of targetQuickPicks; track pick.code) {
+                <button
+                  type="button"
+                  (click)="onTargetLanguageChange(pick.code)"
+                  class="min-h-[34px] px-2.5 py-1 text-xs font-medium rounded-md whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                  [class]="targetLanguage() === pick.code
+                    ? 'text-[#E03E1A] dark:text-[#FF7052] bg-[#FF4F28]/10'
+                    : 'text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'"
+                >
+                  {{ pick.label }}
+                </button>
+              }
+            </div>
+
+            <div class="w-full sm:w-56 shrink-0">
+              <app-language-picker
+                [value]="targetLanguage()"
+                [allowAuto]="false"
+                align="right"
+                ariaLabel="Target language"
+                (valueChange)="onTargetLanguageChange($event)"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Dual-Pane Editor & Output Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-black/10 dark:divide-white/10">
+          <!-- Source Input Pane -->
+          <div class="flex flex-col justify-between p-5 sm:p-6 min-h-[340px] lg:min-h-[390px]">
+            <div class="flex-1 flex flex-col">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <label for="source-textarea" class="font-mono text-xs text-black/50 dark:text-white/50">
+                  {{ sourceLanguage() === 'auto' && detectedLanguage()
+                    ? 'Source · ' + detectedLanguage()?.name
+                    : 'Source · ' + sourceOption().name }}
+                </label>
+
+                @if (sourceText().length > 0) {
+                  <button
+                    type="button"
+                    (click)="clearSource()"
+                    class="min-h-[32px] px-2.5 py-1 inline-flex items-center gap-1.5 text-xs font-medium text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-150 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                    title="Clear source text (Esc)"
+                  >
+                    <fa-icon [icon]="faXmark" class="text-xs"></fa-icon>
+                    <span>Clear</span>
+                  </button>
+                }
+              </div>
+
+              @if (outputViewMode() === 'align' && alignedClauses().length > 1) {
+                <div class="flex-1 space-y-2 overflow-y-auto max-h-[240px] pr-1 mb-3">
+                  @for (clause of alignedClauses(); track clause.index) {
+                    <div
+                      (mouseenter)="hoveredClauseIndex.set(clause.index)"
+                      (mouseleave)="hoveredClauseIndex.set(null)"
+                      class="p-2.5 rounded-lg border transition-colors duration-150 text-sm leading-relaxed"
+                      [class]="hoveredClauseIndex() === clause.index
+                        ? 'border-[#FF4F28]/60 bg-[#FF4F28]/5 text-[#121316] dark:text-white'
+                        : 'border-black/5 dark:border-white/5 bg-black/[0.02] dark:bg-white/[0.02] text-black/80 dark:text-white/80'"
+                    >
+                      <span class="font-mono tabular-nums text-[11px] text-[#FF4F28] mr-2">
+                        0{{ clause.index + 1 }}
+                      </span>
+                      <span [attr.dir]="sourceDir()">{{ clause.source }}</span>
+                    </div>
+                  }
+                </div>
+              } @else {
+                <textarea
+                  id="source-textarea"
+                  [formControl]="sourceControl"
+                  [attr.dir]="sourceDir()"
+                  [attr.maxlength]="maxCharLimit"
+                  (keydown)="onTextareaKeydown($event)"
+                  placeholder="Write, paste, or dictate text here..."
+                  class="w-full flex-1 min-h-[200px] resize-none bg-transparent text-lg sm:text-xl leading-relaxed text-[#121316] dark:text-[#F4F4F6] placeholder:text-black/30 dark:placeholder:text-white/25 focus:outline-none"
+                ></textarea>
+              }
+
+              @if (sourceText().trim().length === 0) {
+                <div class="mt-4 pt-4 border-t border-black/10 dark:border-white/10">
+                  <div class="text-xs font-medium text-black/45 dark:text-white/45 mb-2.5">
+                    Quick-launch scenarios
+                  </div>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    @for (sample of samplePrompts; track sample.id) {
+                      <button
+                        type="button"
+                        (click)="applySamplePrompt(sample)"
+                        class="min-h-[42px] px-3 py-2 rounded-lg border border-black/10 dark:border-white/10 bg-[#F5F3EE]/50 dark:bg-[#0B0C11] hover:border-[#FF4F28]/60 text-left transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                      >
+                        <div class="flex items-center justify-between gap-2">
+                          <span class="text-xs font-medium text-[#121316] dark:text-white truncate">
+                            {{ sample.label }}
+                          </span>
+                          <span class="font-mono text-[11px] uppercase text-[#FF4F28] shrink-0">
+                            {{ sample.sourceLanguage }}→{{ sample.targetLanguage }}
+                          </span>
+                        </div>
+                      </button>
+                    }
+                  </div>
+                </div>
+              }
+
+              @if (sourcePronunciation(); as srcGuide) {
+                <div class="mt-3 pt-3 border-t border-black/10 dark:border-white/10 flex flex-col gap-1">
+                  <div class="flex items-center justify-between gap-2 text-[11px] text-black/45 dark:text-white/45">
+                    <span>Source pronunciation</span>
+                    @if (srcGuide.nativeScript && srcGuide.nativeScript !== srcGuide.romanized) {
+                      <span class="font-mono truncate max-w-[60%]">{{ srcGuide.nativeScript }}</span>
+                    }
+                  </div>
+                  <p class="font-mono text-xs text-black/70 dark:text-white/75 break-words">
+                    {{ pronunciationMode() === 'native' ? srcGuide.romanized : srcGuide.englishPhonetic }}
+                  </p>
+                </div>
+              }
+            </div>
+
+            <!-- Source Action Rail -->
+            <div class="mt-4 pt-3.5 border-t border-black/10 dark:border-white/10 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                @if (speechInputSupported()) {
+                  <button
+                    type="button"
+                    (click)="toggleVoiceInput()"
+                    class="min-h-[38px] px-3 py-1.5 inline-flex items-center gap-2 rounded-lg text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                    [class]="isListening()
+                      ? 'bg-[#FF4F28]/15 text-[#FF4F28] border border-[#FF4F28]/40'
+                      : 'text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5'"
+                    [attr.aria-label]="isListening() ? 'Stop voice dictation' : 'Start voice dictation'"
+                  >
+                    @if (isListening()) {
+                      <span class="inline-flex items-end gap-0.5 h-3" aria-hidden="true">
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-1"></span>
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-2"></span>
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-3"></span>
+                      </span>
+                    } @else {
+                      <fa-icon [icon]="faMicrophone" class="text-xs"></fa-icon>
+                    }
+                    <span>{{ isListening() ? 'Listening' : 'Dictate' }}</span>
+                  </button>
+                }
+
+                @if (speechSynthesisSupported()) {
+                  <button
+                    type="button"
+                    (click)="speakText('source')"
+                    [disabled]="sourceText().trim().length === 0"
+                    class="min-h-[38px] px-3 py-1.5 inline-flex items-center gap-2 rounded-lg text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 disabled:opacity-35 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                    [class]="speakingKey() === 'source'
+                      ? 'bg-[#FF4F28]/15 text-[#FF4F28]'
+                      : 'text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5'"
+                  >
+                    @if (speakingKey() === 'source') {
+                      <span class="inline-flex items-end gap-0.5 h-3" aria-hidden="true">
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-1"></span>
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-2"></span>
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-3"></span>
+                      </span>
+                    } @else {
+                      <fa-icon [icon]="faVolumeHigh" class="text-xs"></fa-icon>
+                    }
+                    <span>{{ speakingKey() === 'source' ? 'Stop' : 'Listen' }}</span>
+                  </button>
+                }
+
+                <button
+                  type="button"
+                  (click)="pasteFromClipboard()"
+                  class="min-h-[38px] px-3 py-1.5 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5 whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                >
+                  <fa-icon [icon]="faPaste" class="text-xs"></fa-icon>
+                  <span>Paste</span>
+                </button>
+              </div>
+
+              <div
+                class="font-mono tabular-nums text-xs whitespace-nowrap"
+                [class]="isNearLimit()
+                  ? 'text-amber-600 dark:text-amber-400 font-medium'
+                  : 'text-black/45 dark:text-white/45'"
+              >
+                @if (isNearLimit()) {
+                  <span class="mr-1">Limit near ·</span>
+                }
+                {{ charCount() }} / {{ maxCharLimit }} <span aria-hidden="true">·</span> {{ wordCount() }} words
+              </div>
+            </div>
+          </div>
+
+          <!-- Target Output Pane -->
+          <div class="flex flex-col justify-between p-5 sm:p-6 min-h-[340px] lg:min-h-[390px] bg-black/[0.02] dark:bg-[#0C0E14] rounded-b-xl lg:rounded-bl-none lg:rounded-r-xl">
+            <div class="flex-1 flex flex-col">
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="font-mono text-xs text-black/50 dark:text-white/50">
+                  Target · {{ targetOption().name }}
+                </span>
+
+                <div class="flex items-center gap-2">
+                  @if (alignedClauses().length > 1 && !isTranslating() && !errorMessage()) {
+                    <div class="inline-flex items-center p-0.5 rounded-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+                      <button
+                        type="button"
+                        (click)="setOutputViewMode('reader')"
+                        class="px-2 py-1 text-[11px] font-medium rounded whitespace-nowrap transition-colors"
+                        [class]="outputViewMode() === 'reader'
+                          ? 'bg-white dark:bg-[#1B1E28] text-[#121316] dark:text-white shadow-sm'
+                          : 'text-black/55 dark:text-white/55'"
+                      >
+                        Reader
+                      </button>
+                      <button
+                        type="button"
+                        (click)="setOutputViewMode('align')"
+                        class="px-2 py-1 text-[11px] font-medium rounded whitespace-nowrap transition-colors"
+                        [class]="outputViewMode() === 'align'
+                          ? 'bg-white dark:bg-[#1B1E28] text-[#121316] dark:text-white shadow-sm'
+                          : 'text-black/55 dark:text-white/55'"
+                      >
+                        Clause align
+                      </button>
+                    </div>
+                  }
+
+                  @if (translatedText().length > 0 && !isTranslating()) {
+                    <span class="font-mono tabular-nums text-xs text-black/45 dark:text-white/45">
+                      {{ translatedWordCount() }} words
+                    </span>
+                  }
+                </div>
+              </div>
+
+              @if (isTranslating()) {
+                <div class="space-y-3.5 py-2" aria-live="polite" aria-label="Translating text">
+                  <div class="h-6 w-11/12 rounded skeleton-line"></div>
+                  <div class="h-6 w-4/5 rounded skeleton-line"></div>
+                  <div class="h-6 w-2/3 rounded skeleton-line"></div>
+                </div>
+              } @else if (errorMessage()) {
+                <div class="my-2 p-4 rounded-lg border border-rose-500/30 bg-rose-500/10 text-sm text-rose-700 dark:text-rose-200 flex items-start justify-between gap-3">
+                  <div class="flex items-start gap-2.5">
+                    <fa-icon [icon]="faCircleExclamation" class="text-rose-500 mt-0.5 shrink-0"></fa-icon>
+                    <span>{{ errorMessage() }}</span>
+                  </div>
+                  <button
+                    type="button"
+                    (click)="translateNow()"
+                    class="min-h-[36px] px-3 py-1.5 rounded-md bg-white dark:bg-[#14161E] border border-rose-500/30 text-xs font-medium text-rose-700 dark:text-rose-200 inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+                  >
+                    <fa-icon [icon]="faRotateRight" class="text-[11px]"></fa-icon>
+                    <span>Retry</span>
+                  </button>
+                </div>
+              } @else if (translatedText()) {
+                @if (outputViewMode() === 'align' && alignedClauses().length > 1) {
+                  <div class="flex-1 space-y-2 overflow-y-auto max-h-[240px] pr-1">
+                    @for (clause of alignedClauses(); track clause.index) {
+                      <div
+                        (mouseenter)="hoveredClauseIndex.set(clause.index)"
+                        (mouseleave)="hoveredClauseIndex.set(null)"
+                        class="p-2.5 rounded-lg border transition-colors duration-150 text-sm leading-relaxed"
+                        [class]="hoveredClauseIndex() === clause.index
+                          ? 'border-[#FF4F28]/60 bg-[#FF4F28]/10 text-[#121316] dark:text-white'
+                          : 'border-black/5 dark:border-white/5 bg-white/60 dark:bg-white/[0.02] text-[#121316] dark:text-[#F4F4F6]'"
+                      >
+                        <span class="font-mono tabular-nums text-[11px] text-[#FF4F28] mr-2">
+                          0{{ clause.index + 1 }}
+                        </span>
+                        <span [attr.dir]="targetDir()">{{ clause.target }}</span>
+                      </div>
+                    }
+                  </div>
+                } @else {
+                  @if (targetPronunciation(); as guide) {
+                    <div
+                      [attr.dir]="targetDir()"
+                      aria-live="polite"
+                      class="flex-1 text-[#121316] dark:text-white whitespace-pre-wrap break-words select-text"
+                      [class]="outputTypographyClass()"
+                    >
+                      @for (seg of guide.displaySegments; track $index) {
+                        @if (seg.tokenIndex !== null) {
+                          @let tok = guide.tokens[seg.tokenIndex];
+                          <button
+                            type="button"
+                            (click)="speakSingleToken('target', tok, undefined, 'native')"
+                            (mouseenter)="setHoveredToken('target', tok.index)"
+                            (mouseleave)="setHoveredToken(null, null)"
+                            [attr.title]="'Click to hear native word: ' + tok.englishPhonetic"
+                            class="inline text-left rounded px-0.5 transition-colors duration-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                            [class]="isTokenHighlighted('target', tok.index)
+                              ? 'bg-[#FF4F28]/25 text-[#E03E1A] dark:text-[#FF8A70] underline decoration-[#FF4F28] decoration-2 underline-offset-4'
+                              : 'hover:bg-black/5 dark:hover:bg-white/10'"
+                          >{{ seg.text }}</button>
+                        } @else {
+                          <span>{{ seg.text }}</span>
+                        }
+                      }
+                    </div>
+                  } @else {
+                    <div
+                      [attr.dir]="targetDir()"
+                      aria-live="polite"
+                      class="flex-1 text-[#121316] dark:text-white whitespace-pre-wrap select-text break-words"
+                      [class]="outputTypographyClass()"
+                    >{{ translatedText() }}</div>
+                  }
+                }
+              } @else {
+                <div class="flex-1 flex items-center text-base sm:text-lg text-black/35 dark:text-white/30 select-none">
+                  @if (translationMode() === 'manual') {
+                    Enter text and click Translate or press Ctrl/Cmd + Enter.
+                  } @else {
+                    Translation renders here in real time.
+                  }
+                </div>
+              }
+
+              @if (targetPronunciation(); as guide) {
+                @if (!isTranslating() && !errorMessage()) {
+                  <div class="mt-4 pt-3.5 border-t border-black/10 dark:border-white/10">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-xs font-medium text-black/55 dark:text-white/55">
+                          How to pronounce
+                        </span>
+
+                        @if (speechSynthesisSupported()) {
+                          <button
+                            type="button"
+                            (click)="speakEnglishPronunciation('target', guide)"
+                            class="min-h-[30px] px-2.5 py-1 inline-flex items-center gap-1.5 rounded-md border text-[11px] font-medium whitespace-nowrap transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                            [class]="speakingKey() === 'target' && speakingStyle() === 'phonetic'
+                              ? 'border-[#FF4F28] bg-[#FF4F28] text-white'
+                              : 'border-[#FF4F28]/40 bg-[#FF4F28]/10 text-[#E03E1A] dark:text-[#FF8A70] hover:bg-[#FF4F28]/20'"
+                          >
+                            @if (speakingKey() === 'target' && speakingStyle() === 'phonetic') {
+                              <span class="inline-flex items-end gap-0.5 h-2.5" aria-hidden="true">
+                                <span class="w-0.5 h-2.5 bg-white rounded-full eq-bar-1"></span>
+                                <span class="w-0.5 h-2.5 bg-white rounded-full eq-bar-2"></span>
+                                <span class="w-0.5 h-2.5 bg-white rounded-full eq-bar-3"></span>
+                              </span>
+                              <span>Stop English</span>
+                            } @else {
+                              <fa-icon [icon]="faVolumeHigh" class="text-[10px]"></fa-icon>
+                              <span>Speak English</span>
+                            }
+                          </button>
+
+                          <div
+                            class="inline-flex items-center p-0.5 rounded-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10"
+                            role="group"
+                            aria-label="Pronunciation speed"
+                          >
+                            @for (rate of speechRateOptions; track rate) {
+                              <button
+                                type="button"
+                                (click)="setSpeechRate(rate)"
+                                [attr.title]="'Set speech speed to ' + formatSpeechRate(rate)"
+                                class="px-1.5 py-0.5 font-mono text-[11px] font-medium rounded whitespace-nowrap transition-colors"
+                                [class]="speechRate() === rate
+                                  ? 'bg-white dark:bg-[#1B1E28] text-[#FF4F28] shadow-sm font-semibold'
+                                  : 'text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white'"
+                              >
+                                {{ formatSpeechRate(rate) }}
+                              </button>
+                            }
+                          </div>
+                        }
+
+                        <button
+                          type="button"
+                          (click)="copyPronunciation(guide)"
+                          class="px-2 py-0.5 rounded text-[11px] font-medium text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                        >
+                          {{ copiedPronunciation() ? 'Copied' : 'Copy guide' }}
+                        </button>
+                      </div>
+
+                      <div
+                        class="inline-flex items-center p-0.5 rounded-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10"
+                        role="group"
+                        aria-label="Pronunciation display mode"
+                      >
+                        <button
+                          type="button"
+                          (click)="setPronunciationMode('english')"
+                          class="px-2 py-0.5 text-[11px] font-medium rounded whitespace-nowrap transition-colors"
+                          [class]="pronunciationMode() === 'english'
+                            ? 'bg-white dark:bg-[#1B1E28] text-[#121316] dark:text-white shadow-sm'
+                            : 'text-black/55 dark:text-white/55'"
+                        >
+                          English speaking
+                        </button>
+                        <button
+                          type="button"
+                          (click)="setPronunciationMode('native')"
+                          class="px-2 py-0.5 text-[11px] font-medium rounded whitespace-nowrap transition-colors"
+                          [class]="pronunciationMode() === 'native'
+                            ? 'bg-white dark:bg-[#1B1E28] text-[#121316] dark:text-white shadow-sm'
+                            : 'text-black/55 dark:text-white/55'"
+                        >
+                          Native / Romaji
+                        </button>
+                      </div>
+                    </div>
+
+                    @if (getSpokenToken(guide, 'target'); as activeTok) {
+                      <div class="mb-2.5 px-2.5 py-1.5 rounded-md border border-[#FF4F28]/30 bg-[#FF4F28]/10 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs">
+                        <span class="font-medium text-[#121316] dark:text-white">{{ activeTok.original }}</span>
+                        <span class="text-black/40 dark:text-white/40" aria-hidden="true">→</span>
+                        <span class="font-mono font-semibold text-[#E03E1A] dark:text-[#FF8A70]">{{ activeTok.englishPhonetic }}</span>
+                        @if (activeTok.romanized && activeTok.romanized !== activeTok.original && activeTok.romanized !== activeTok.englishPhonetic) {
+                          <span class="text-black/40 dark:text-white/40" aria-hidden="true">·</span>
+                          <span class="font-mono text-black/65 dark:text-white/70">{{ activeTok.romanized }}</span>
+                        }
+                      </div>
+                    }
+
+                    <div class="space-y-2.5">
+                      @if (pronunciationMode() === 'english') {
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                          <span class="font-mono text-[11px] text-[#FF4F28] shrink-0 sm:w-32">
+                            English speaking
+                          </span>
+                          <div class="flex flex-wrap items-baseline gap-x-1.5 gap-y-1 font-mono text-sm text-[#121316] dark:text-white select-text">
+                            @for (tok of guide.tokens; track tok.index) {
+                              <button
+                                type="button"
+                                (click)="speakSingleToken('target', tok, undefined, 'phonetic')"
+                                (mouseenter)="setHoveredToken('target', tok.index)"
+                                (mouseleave)="setHoveredToken(null, null)"
+                                [attr.title]="'Hear English sound: ' + tok.englishPhonetic + ' (' + tok.original + ')'"
+                                class="rounded px-1.5 py-0.5 -mx-0.5 transition-colors duration-75 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                                [class]="isTokenHighlighted('target', tok.index)
+                                  ? 'bg-[#FF4F28] text-white font-semibold shadow-sm'
+                                  : 'hover:bg-black/5 dark:hover:bg-white/10'"
+                              >{{ tok.englishPhonetic }}</button>
+                            }
+                          </div>
+                        </div>
+                      }
+
+                      @if (pronunciationMode() === 'native') {
+                        @if (guide.nativeScript && guide.nativeScript !== guide.romanized) {
+                          <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                            <span class="font-mono text-[11px] text-black/50 dark:text-white/50 shrink-0 sm:w-32">
+                              {{ guide.nativeScriptLabel }}
+                            </span>
+                            <div class="flex flex-wrap items-baseline gap-x-1.5 gap-y-1 text-sm text-black/80 dark:text-white/85 select-text">
+                              @for (tok of guide.tokens; track tok.index) {
+                                <button
+                                  type="button"
+                                  (click)="speakSingleToken('target', tok, undefined, 'native')"
+                                  (mouseenter)="setHoveredToken('target', tok.index)"
+                                  (mouseleave)="setHoveredToken(null, null)"
+                                  class="rounded px-1 -mx-0.5 transition-colors duration-100"
+                                  [class]="isTokenHighlighted('target', tok.index)
+                                    ? 'bg-[#FF4F28]/20 text-[#E03E1A] dark:text-[#FF8A70] font-medium'
+                                    : 'hover:bg-black/5 dark:hover:bg-white/10'"
+                                >{{ tok.nativeScript || tok.original }}</button>
+                              }
+                            </div>
+                          </div>
+                        }
+
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                          <span class="font-mono text-[11px] text-black/50 dark:text-white/50 shrink-0 sm:w-32">
+                            {{ guide.romanizedLabel }}
+                          </span>
+                          <div class="flex flex-wrap items-baseline gap-x-1.5 gap-y-1 font-mono text-sm text-black/75 dark:text-white/80 select-text">
+                            @for (tok of guide.tokens; track tok.index) {
+                              <button
+                                type="button"
+                                (click)="speakSingleToken('target', tok, undefined, 'native')"
+                                (mouseenter)="setHoveredToken('target', tok.index)"
+                                (mouseleave)="setHoveredToken(null, null)"
+                                class="rounded px-1 -mx-0.5 transition-colors duration-100"
+                                [class]="isTokenHighlighted('target', tok.index)
+                                  ? 'bg-[#FF4F28]/20 text-[#E03E1A] dark:text-[#FF8A70] font-medium'
+                                  : 'hover:bg-black/5 dark:hover:bg-white/10'"
+                              >{{ tok.romanized }}</button>
+                            }
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+
+            <!-- Target Action Rail -->
+            <div class="mt-4 pt-3.5 border-t border-black/10 dark:border-white/10 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button
+                  type="button"
+                  (click)="copyTranslation()"
+                  [disabled]="!translatedText() || isTranslating()"
+                  class="min-h-[38px] px-3 py-1.5 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 disabled:opacity-35 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                  [class]="copiedTarget()
+                    ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
+                    : 'text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5'"
+                >
+                  <fa-icon [icon]="copiedTarget() ? faCheck : faCopy" class="text-xs"></fa-icon>
+                  <span>{{ copiedTarget() ? 'Copied' : 'Copy' }}</span>
+                </button>
+
+                @if (speechSynthesisSupported()) {
+                  <button
+                    type="button"
+                    (click)="speakText('target')"
+                    [disabled]="!translatedText() || isTranslating()"
+                    class="min-h-[38px] px-3 py-1.5 inline-flex items-center gap-2 rounded-lg text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 disabled:opacity-35 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                    [class]="speakingKey() === 'target' && speakingStyle() === 'native'
+                      ? 'bg-[#FF4F28]/15 text-[#FF4F28]'
+                      : 'text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5'"
+                  >
+                    @if (speakingKey() === 'target' && speakingStyle() === 'native') {
+                      <span class="inline-flex items-end gap-0.5 h-3" aria-hidden="true">
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-1"></span>
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-2"></span>
+                        <span class="w-0.5 h-3 bg-[#FF4F28] rounded-full eq-bar-3"></span>
+                      </span>
+                    } @else {
+                      <fa-icon [icon]="faVolumeHigh" class="text-xs"></fa-icon>
+                    }
+                    <span>{{ speakingKey() === 'target' && speakingStyle() === 'native' ? 'Stop' : 'Listen' }}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    (click)="toggleSpeechRate()"
+                    title="Cycle speech speed (0.5×, 0.75×, 1.0×, 1.25×)"
+                    class="min-h-[38px] px-2.5 py-1.5 inline-flex items-center rounded-lg font-mono text-[11px] font-medium whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                    [class]="speechRate() < 1
+                      ? 'bg-[#FF4F28]/15 text-[#E03E1A] dark:text-[#FF8A70]'
+                      : 'text-black/55 dark:text-white/55 hover:bg-black/5 dark:hover:bg-white/5'"
+                  >
+                    {{ formatSpeechRate(speechRate()) }}
+                  </button>
+                }
+
+                <button
+                  type="button"
+                  (click)="toggleSaveCurrent()"
+                  [disabled]="!translatedText() || isTranslating()"
+                  class="min-h-[38px] px-3 py-1.5 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 disabled:opacity-35 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                  [class]="isCurrentSaved()
+                    ? 'bg-[#FF4F28]/15 text-[#E03E1A] dark:text-[#FF7052]'
+                    : 'text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5'"
+                >
+                  <fa-icon [icon]="isCurrentSaved() ? faBookmarkSolid : faBookmarkRegular" class="text-xs"></fa-icon>
+                  <span>{{ isCurrentSaved() ? 'Saved' : 'Save' }}</span>
+                </button>
+
+                <button
+                  type="button"
+                  (click)="chainTranslateFromOutput()"
+                  [disabled]="!translatedText() || isTranslating()"
+                  title="Move translation into source box to chain-translate"
+                  class="min-h-[38px] px-3 py-1.5 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5 whitespace-nowrap shrink-0 transition-colors duration-150 disabled:opacity-35 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                >
+                  <fa-icon [icon]="faRotateRight" class="text-xs"></fa-icon>
+                  <span class="hidden sm:inline">Use as source</span>
+                </button>
+
+                <button
+                  type="button"
+                  (click)="downloadTranslationTxt()"
+                  [disabled]="!translatedText() || isTranslating()"
+                  class="min-h-[38px] px-3 py-1.5 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5 whitespace-nowrap shrink-0 transition-colors duration-150 disabled:opacity-35 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+                >
+                  <fa-icon [icon]="faDownload" class="text-xs"></fa-icon>
+                  <span class="hidden sm:inline">.txt</span>
+                </button>
+              </div>
+
+              <button
+                type="button"
+                (click)="translateNow()"
+                [disabled]="sourceText().trim().length === 0 || isTranslating()"
+                class="min-h-[40px] px-5 py-2 inline-flex items-center gap-2 rounded-lg bg-[#FF4F28] hover:bg-[#E63D17] disabled:opacity-45 disabled:cursor-not-allowed text-sm font-semibold text-white whitespace-nowrap shrink-0 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#0C0E14]"
+              >
+                <span>{{ isTranslating() ? 'Translating...' : 'Translate' }}</span>
+                @if (!isTranslating()) {
+                  <fa-icon [icon]="faArrowRight" class="text-xs"></fa-icon>
+                }
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      @if (clipboardNotice()) {
+        <div
+          role="status"
+          class="mt-3 px-4 py-2.5 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] text-xs text-black/75 dark:text-white/75 flex items-center justify-between"
+        >
+          <span>{{ clipboardNotice() }}</span>
+          <button
+            type="button"
+            (click)="clipboardNotice.set(null)"
+            class="text-black/45 dark:text-white/45 hover:text-black dark:hover:text-white p-1"
+            aria-label="Dismiss notification"
+          >
+            <fa-icon [icon]="faXmark" class="text-xs"></fa-icon>
+          </button>
+        </div>
+      }
+
+      <!-- Recent Activity Preview -->
+      <section class="mt-9" aria-label="Recent translations">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-display text-base font-semibold text-[#121316] dark:text-white">
+            Recent sessions
+          </h2>
+          @if (historyEntries().length > 0) {
+            <button
+              type="button"
+              (click)="setTab('history')"
+              class="text-xs font-medium text-[#FF4F28] hover:underline whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28] rounded"
+            >
+              View all ({{ historyEntries().length }})
+            </button>
+          }
+        </div>
+
+        @if (recentEntries().length > 0) {
+          <div class="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] overflow-hidden divide-y divide-black/10 dark:divide-white/10">
+            @for (entry of recentEntries(); track entry.id) {
+              <div
+                (click)="restoreEntry(entry)"
+                (keydown.enter)="restoreEntry(entry)"
+                tabindex="0"
+                role="button"
+                class="px-4 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-black/[0.025] dark:hover:bg-white/[0.03] cursor-pointer transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#FF4F28]"
+              >
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center gap-2 font-mono text-[11px] text-black/45 dark:text-white/45 mb-1">
+                    <span>{{ getLanguageName(entry.detectedSourceCode || entry.sourceLanguage) }}</span>
+                    <span aria-hidden="true">→</span>
+                    <span class="text-[#121316] dark:text-white font-medium">{{ getLanguageName(entry.targetLanguage) }}</span>
+                    <span aria-hidden="true">·</span>
+                    <span class="tabular-nums">{{ formatRelativeTime(entry.timestamp) }}</span>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                    <p class="truncate text-black/60 dark:text-white/60">{{ entry.sourceText }}</p>
+                    <p class="truncate font-medium text-[#121316] dark:text-white">{{ entry.translatedText }}</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1 shrink-0">
+                  <button
+                    type="button"
+                    (click)="toggleEntryFavorite(entry.id, $event)"
+                    [attr.aria-label]="entry.favorite ? 'Remove from phrasebook' : 'Save to phrasebook'"
+                    class="min-w-[36px] min-h-[36px] inline-flex items-center justify-center rounded-lg text-black/40 dark:text-white/40 hover:text-[#FF4F28] hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                  >
+                    <fa-icon
+                      [icon]="entry.favorite ? faBookmarkSolid : faBookmarkRegular"
+                      class="text-xs"
+                      [class.text-[#FF4F28]]="entry.favorite"
+                    ></fa-icon>
+                  </button>
+                  <button
+                    type="button"
+                    (click)="deleteEntry(entry.id, $event)"
+                    aria-label="Delete translation entry"
+                    class="min-w-[36px] min-h-[36px] inline-flex items-center justify-center rounded-lg text-black/40 dark:text-white/40 hover:text-rose-500 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                  >
+                    <fa-icon [icon]="faTrashCan" class="text-xs"></fa-icon>
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] px-6 py-7 text-center">
+            <p class="text-sm text-black/55 dark:text-white/55">
+              Every translation you run is logged locally so you can revisit, export, or bookmark phrases anytime.
+            </p>
+          </div>
+        }
+      </section>
+    } @else if (activeTab() === 'compare') {
+      <!-- Multi-Target 1 -> 4 Parallel Compare Matrix -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
+        <div>
+          <p class="font-mono text-xs text-[#FF4F28] mb-2">
+            Parallel matrix <span aria-hidden="true">·</span> 1 source to 4 scripts simultaneously
+          </p>
+          <h1 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#121316] dark:text-white text-balance">
+            Multi-Target Compare
+          </h1>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            (click)="togglePronunciation()"
+            [attr.aria-pressed]="showPronunciation()"
+            class="min-h-[38px] px-3.5 py-1.5 inline-flex items-center gap-2 rounded-lg border text-xs font-medium whitespace-nowrap shrink-0 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+            [class]="showPronunciation()
+              ? 'border-[#FF4F28]/50 bg-[#FF4F28]/10 text-[#E03E1A] dark:text-[#FF7052]'
+              : 'border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] text-[#121316] dark:text-white'"
+          >
+            <fa-icon [icon]="faVolumeHigh" class="text-[11px]"></fa-icon>
+            <span>Pronunciation: {{ showPronunciation() ? 'On' : 'Off' }}</span>
+          </button>
+
+          @if (speechSynthesisSupported()) {
+            <div
+              class="inline-flex items-center p-0.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10"
+              role="group"
+              aria-label="Compare speech speed"
+            >
+              @for (rate of speechRateOptions; track rate) {
+                <button
+                  type="button"
+                  (click)="setSpeechRate(rate)"
+                  class="min-h-[32px] px-2 py-1 font-mono text-[11px] font-medium rounded-md whitespace-nowrap transition-colors"
+                  [class]="speechRate() === rate
+                    ? 'bg-white dark:bg-[#1B1E28] text-[#FF4F28] shadow-sm font-semibold'
+                    : 'text-black/55 dark:text-white/55 hover:text-[#121316] dark:hover:text-white'"
+                >
+                  {{ formatSpeechRate(rate) }}
+                </button>
+              }
+            </div>
+          }
+
+          @for (preset of comparePresets; track preset.id) {
+            <button
+              type="button"
+              (click)="applyComparePreset(preset.codes)"
+              class="min-h-[38px] px-3.5 py-1.5 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] hover:border-[#FF4F28]/60 text-xs font-medium text-[#121316] dark:text-white whitespace-nowrap shrink-0 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+            >
+              {{ preset.label }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Shared Source Bar for Compare -->
+      <section class="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] p-5 mb-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-56">
+              <app-language-picker
+                [value]="compareSourceLanguage()"
+                [allowAuto]="true"
+                align="left"
+                ariaLabel="Compare source language"
+                (valueChange)="onCompareSourceLanguageChange($event)"
+              />
+            </div>
+            @if (compareSourceLanguage() === 'auto' && compareDetectedLanguage()) {
+              <span class="font-mono text-xs text-black/50 dark:text-white/50">
+                Detected: <strong class="font-sans font-medium text-[#121316] dark:text-white">{{ compareDetectedLanguage()?.name }}</strong>
+              </span>
+            }
+          </div>
+
+          <button
+            type="button"
+            (click)="runCompareTranslations()"
+            [disabled]="compareSourceText().trim().length === 0"
+            class="min-h-[40px] px-5 py-2 inline-flex items-center justify-center gap-2 rounded-lg bg-[#FF4F28] hover:bg-[#E63D17] disabled:opacity-45 text-sm font-semibold text-white whitespace-nowrap shrink-0 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+          >
+            <span>Translate all 4</span>
+            <fa-icon [icon]="faArrowRight" class="text-xs"></fa-icon>
+          </button>
+        </div>
+
+        <textarea
+          [formControl]="compareSourceControl"
+          rows="2"
+          maxlength="2000"
+          placeholder="Enter a phrase, product tagline, or UI string to compare across 4 languages at once..."
+          class="w-full resize-none bg-transparent text-lg leading-relaxed text-[#121316] dark:text-white placeholder:text-black/35 dark:placeholder:text-white/30 focus:outline-none"
+        ></textarea>
+      </section>
+
+      <!-- 2x2 Parallel Target Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        @for (view of compareSlotViews(); track view.slot.id) {
+          @let slot = view.slot;
+          <article class="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] p-5 flex flex-col justify-between min-h-[220px]">
+            <div>
+              <div class="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-black/10 dark:border-white/10">
+                <div class="w-52">
+                  <app-language-picker
+                    [value]="slot.languageCode"
+                    [allowAuto]="false"
+                    align="left"
+                    [ariaLabel]="'Target slot ' + (slot.id + 1)"
+                    (valueChange)="onCompareSlotLanguageChange(slot.id, $event)"
+                  />
+                </div>
+                <span class="font-mono text-xs text-black/45 dark:text-white/45 truncate">
+                  {{ getLanguageNativeName(slot.languageCode) }}
+                </span>
+              </div>
+
+              @if (slot.isLoading) {
+                <div class="space-y-3 py-2">
+                  <div class="h-5 w-11/12 rounded skeleton-line"></div>
+                  <div class="h-5 w-3/4 rounded skeleton-line"></div>
+                </div>
+              } @else if (slot.error) {
+                <p class="text-sm text-rose-500">{{ slot.error }}</p>
+              } @else if (slot.translatedText) {
+                @if (view.guide; as slotGuide) {
+                  <div
+                    [attr.dir]="isRtl(slot.languageCode) ? 'rtl' : 'ltr'"
+                    class="font-display text-xl sm:text-2xl font-medium leading-snug text-[#121316] dark:text-white whitespace-pre-wrap break-words select-text"
+                  >
+                    @for (seg of slotGuide.displaySegments; track $index) {
+                      @if (seg.tokenIndex !== null) {
+                        @let tok = slotGuide.tokens[seg.tokenIndex];
+                        <button
+                          type="button"
+                          (click)="speakSingleToken('compare-' + slot.id, tok, slot.languageCode, 'native')"
+                          (mouseenter)="setHoveredToken('compare-' + slot.id, tok.index)"
+                          (mouseleave)="setHoveredToken(null, null)"
+                          class="inline text-left rounded px-0.5 transition-colors duration-75"
+                          [class]="isTokenHighlighted('compare-' + slot.id, tok.index)
+                            ? 'bg-[#FF4F28]/25 text-[#E03E1A] dark:text-[#FF8A70] underline decoration-[#FF4F28] decoration-2 underline-offset-4'
+                            : 'hover:bg-black/5 dark:hover:bg-white/10'"
+                        >{{ seg.text }}</button>
+                      } @else {
+                        <span>{{ seg.text }}</span>
+                      }
+                    }
+                  </div>
+
+                  <div class="mt-3 pt-2.5 border-t border-black/5 dark:border-white/5 space-y-1.5">
+                    <div class="flex flex-wrap items-baseline gap-x-1 gap-y-1 font-mono text-xs text-[#E03E1A] dark:text-[#FF8A70] select-text">
+                      <span class="text-black/45 dark:text-white/45 mr-1">Speak:</span>
+                      @for (tok of slotGuide.tokens; track tok.index) {
+                        <button
+                          type="button"
+                          (click)="speakSingleToken('compare-' + slot.id, tok, slot.languageCode, 'phonetic')"
+                          (mouseenter)="setHoveredToken('compare-' + slot.id, tok.index)"
+                          (mouseleave)="setHoveredToken(null, null)"
+                          class="rounded px-1 -mx-0.5 transition-colors duration-75"
+                          [class]="isTokenHighlighted('compare-' + slot.id, tok.index)
+                            ? 'bg-[#FF4F28] text-white font-semibold'
+                            : 'hover:bg-black/5 dark:hover:bg-white/10'"
+                        >{{ tok.englishPhonetic }}</button>
+                      }
+                    </div>
+                    @if (slotGuide.nativeScript && slotGuide.nativeScript !== slotGuide.romanized) {
+                      <div class="text-xs text-black/65 dark:text-white/70 break-words select-text">
+                        <span class="font-mono text-black/45 dark:text-white/45 mr-1.5">{{ slotGuide.nativeScriptLabel }}:</span>{{ slotGuide.nativeScript }}
+                        <span class="mx-1.5 opacity-40" aria-hidden="true">·</span>
+                        <span class="font-mono">{{ slotGuide.romanized }}</span>
+                      </div>
+                    } @else if (slotGuide.romanized !== slot.translatedText) {
+                      <div class="font-mono text-xs text-black/60 dark:text-white/65 break-words select-text">
+                        {{ slotGuide.romanized }}
+                      </div>
+                    }
+                  </div>
+                } @else {
+                  <p
+                    [attr.dir]="isRtl(slot.languageCode) ? 'rtl' : 'ltr'"
+                    class="font-display text-xl sm:text-2xl font-medium leading-snug text-[#121316] dark:text-white break-words select-text"
+                  >
+                    {{ slot.translatedText }}
+                  </p>
+                }
+              } @else {
+                <p class="text-sm text-black/35 dark:text-white/35">
+                  Translation output appears here.
+                </p>
+              }
+            </div>
+
+            <div class="mt-5 pt-3 border-t border-black/5 dark:border-white/5 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button
+                  type="button"
+                  (click)="copyCompareSlot(slot)"
+                  [disabled]="!slot.translatedText || slot.isLoading"
+                  class="min-h-[36px] px-3 py-1.5 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium transition-colors disabled:opacity-35"
+                  [class]="copiedCompareSlotId() === slot.id
+                    ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-300'
+                    : 'text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5'"
+                >
+                  <fa-icon [icon]="copiedCompareSlotId() === slot.id ? faCheck : faCopy" class="text-xs"></fa-icon>
+                  <span>{{ copiedCompareSlotId() === slot.id ? 'Copied' : 'Copy' }}</span>
+                </button>
+
+                @if (speechSynthesisSupported()) {
+                  <button
+                    type="button"
+                    (click)="speakText('compare-' + slot.id, slot.translatedText, slot.languageCode)"
+                    [disabled]="!slot.translatedText || slot.isLoading"
+                    class="min-h-[36px] px-3 py-1.5 inline-flex items-center gap-2 rounded-lg text-xs font-medium transition-colors disabled:opacity-35"
+                    [class]="speakingKey() === 'compare-' + slot.id && speakingStyle() === 'native'
+                      ? 'bg-[#FF4F28]/15 text-[#FF4F28]'
+                      : 'text-black/65 dark:text-white/65 hover:bg-black/5 dark:hover:bg-white/5'"
+                  >
+                    <fa-icon [icon]="speakingKey() === 'compare-' + slot.id && speakingStyle() === 'native' ? faStop : faVolumeHigh" class="text-xs"></fa-icon>
+                    <span>{{ speakingKey() === 'compare-' + slot.id && speakingStyle() === 'native' ? 'Stop' : 'Listen' }}</span>
+                  </button>
+
+                  @if (view.guide; as slotGuide) {
+                    <button
+                      type="button"
+                      (click)="speakEnglishPronunciation('compare-' + slot.id, slotGuide, slot.languageCode)"
+                      [disabled]="!slot.translatedText || slot.isLoading"
+                      class="min-h-[36px] px-2.5 py-1.5 inline-flex items-center gap-1.5 rounded-lg text-xs font-medium transition-colors disabled:opacity-35"
+                      [class]="speakingKey() === 'compare-' + slot.id && speakingStyle() === 'phonetic'
+                        ? 'bg-[#FF4F28] text-white'
+                        : 'text-[#E03E1A] dark:text-[#FF8A70] hover:bg-[#FF4F28]/10'"
+                    >
+                      <fa-icon [icon]="speakingKey() === 'compare-' + slot.id && speakingStyle() === 'phonetic' ? faStop : faVolumeHigh" class="text-xs"></fa-icon>
+                      <span>{{ speakingKey() === 'compare-' + slot.id && speakingStyle() === 'phonetic' ? 'Stop' : 'Speak EN' }}</span>
+                    </button>
+                  }
+                }
+              </div>
+
+              <span class="font-mono tabular-nums text-[11px] text-black/40 dark:text-white/40">
+                {{ slot.translatedText.length }} chars
+              </span>
+            </div>
+          </article>
+        }
+      </div>
+    } @else {
+      <!-- History / Phrasebook View -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+          <p class="font-mono text-xs text-[#FF4F28] mb-2">
+            {{ activeTab() === 'phrasebook' ? favoriteEntries().length + ' saved phrases' : historyEntries().length + ' logged translations' }}
+          </p>
+          <h1 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#121316] dark:text-white">
+            {{ activeTab() === 'phrasebook' ? 'Saved Phrasebook' : 'Translation History' }}
+          </h1>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0 flex-wrap">
+          @if (filteredEntries().length > 0) {
+            <button
+              type="button"
+              (click)="exportHistoryCsv()"
+              class="min-h-[40px] px-4 py-2 inline-flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] hover:border-black/25 dark:hover:border-white/25 text-xs font-medium text-[#121316] dark:text-white whitespace-nowrap shrink-0 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+            >
+              <fa-icon [icon]="faDownload" class="text-xs"></fa-icon>
+              <span>Export CSV</span>
+            </button>
+          }
+
+          @if (activeTab() === 'history' && historyEntries().length > 0) {
+            <button
+              type="button"
+              (click)="clearHistory()"
+              class="min-h-[40px] px-4 py-2 inline-flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] hover:border-rose-500/50 hover:text-rose-500 text-xs font-medium text-[#121316] dark:text-white whitespace-nowrap shrink-0 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+            >
+              <fa-icon [icon]="faTrashCan" class="text-xs"></fa-icon>
+              <span>Clear unstarred</span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <div class="flex flex-col sm:flex-row gap-3 mb-5">
+        <div class="relative flex-1">
+          <fa-icon
+            [icon]="faMagnifyingGlass"
+            class="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-black/40 dark:text-white/40 pointer-events-none"
+          ></fa-icon>
+          <input
+            type="text"
+            [formControl]="historySearchControl"
+            placeholder="Search source text, translation, or language..."
+            aria-label="Search translation log"
+            class="w-full min-h-[42px] pl-9 pr-9 py-2 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] text-sm text-[#121316] dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+          />
+          @if (historySearch().length > 0) {
+            <button
+              type="button"
+              (click)="historySearchControl.setValue('')"
+              aria-label="Clear search"
+              class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1.5 text-black/45 dark:text-white/45 hover:text-black dark:hover:text-white"
+            >
+              <fa-icon [icon]="faXmark" class="text-xs"></fa-icon>
+            </button>
+          }
+        </div>
+
+        <select
+          [formControl]="historyLanguageFilterControl"
+          aria-label="Filter by language"
+          class="min-h-[42px] px-3.5 py-2 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] text-sm text-[#121316] dark:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28] sm:w-56"
+        >
+          <option value="all">All languages</option>
+          @for (lang of usedLanguageOptions(); track lang.code) {
+            <option [value]="lang.code">{{ lang.name }}</option>
+          }
+        </select>
+      </div>
+
+      @if (filteredEntries().length > 0) {
+        <div class="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-black/10 dark:border-white/10 text-xs font-medium text-black/50 dark:text-white/50">
+                  <th class="py-3 px-4 whitespace-nowrap">Pair</th>
+                  <th class="py-3 px-4">Source</th>
+                  <th class="py-3 px-4">Translation</th>
+                  <th class="py-3 px-4 whitespace-nowrap text-right">Chars</th>
+                  <th class="py-3 px-4 whitespace-nowrap text-right">When</th>
+                  <th class="py-3 px-4 whitespace-nowrap text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-black/10 dark:divide-white/10 text-sm">
+                @for (entry of filteredEntries(); track entry.id) {
+                  <tr
+                    (click)="restoreEntry(entry)"
+                    class="hover:bg-black/[0.025] dark:hover:bg-white/[0.03] cursor-pointer transition-colors"
+                  >
+                    <td class="py-3 px-4 whitespace-nowrap font-mono text-xs text-black/60 dark:text-white/60">
+                      {{ getLanguageName(entry.detectedSourceCode || entry.sourceLanguage) }}
+                      <span class="opacity-45 mx-1" aria-hidden="true">→</span>
+                      <span class="font-medium text-[#121316] dark:text-white">{{ getLanguageName(entry.targetLanguage) }}</span>
+                    </td>
+                    <td class="py-3 px-4 max-w-xs truncate text-black/60 dark:text-white/60">
+                      {{ entry.sourceText }}
+                    </td>
+                    <td class="py-3 px-4 max-w-xs truncate font-medium text-[#121316] dark:text-white">
+                      {{ entry.translatedText }}
+                    </td>
+                    <td class="py-3 px-4 whitespace-nowrap text-right font-mono tabular-nums text-xs text-black/45 dark:text-white/45">
+                      {{ entry.sourceText.length }}
+                    </td>
+                    <td class="py-3 px-4 whitespace-nowrap text-right font-mono tabular-nums text-xs text-black/45 dark:text-white/45">
+                      {{ formatRelativeTime(entry.timestamp) }}
+                    </td>
+                    <td class="py-3 px-4 whitespace-nowrap text-right">
+                      <div class="inline-flex items-center gap-1">
+                        <button
+                          type="button"
+                          (click)="copyEntryText(entry); $event.stopPropagation()"
+                          aria-label="Copy translation"
+                          class="min-w-[34px] min-h-[34px] inline-flex items-center justify-center rounded-lg text-black/45 dark:text-white/45 hover:text-[#121316] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5"
+                        >
+                          <fa-icon
+                            [icon]="copiedEntryId() === entry.id ? faCheck : faCopy"
+                            class="text-xs"
+                            [class.text-emerald-500]="copiedEntryId() === entry.id"
+                          ></fa-icon>
+                        </button>
+                        <button
+                          type="button"
+                          (click)="toggleEntryFavorite(entry.id, $event)"
+                          [attr.aria-label]="entry.favorite ? 'Remove bookmark' : 'Bookmark translation'"
+                          class="min-w-[34px] min-h-[34px] inline-flex items-center justify-center rounded-lg text-black/45 dark:text-white/45 hover:text-[#FF4F28] hover:bg-black/5 dark:hover:bg-white/5"
+                        >
+                          <fa-icon
+                            [icon]="entry.favorite ? faBookmarkSolid : faBookmarkRegular"
+                            class="text-xs"
+                            [class.text-[#FF4F28]]="entry.favorite"
+                          ></fa-icon>
+                        </button>
+                        <button
+                          type="button"
+                          (click)="deleteEntry(entry.id, $event)"
+                          aria-label="Delete entry"
+                          class="min-w-[34px] min-h-[34px] inline-flex items-center justify-center rounded-lg text-black/45 dark:text-white/45 hover:text-rose-500 hover:bg-black/5 dark:hover:bg-white/5"
+                        >
+                          <fa-icon [icon]="faTrashCan" class="text-xs"></fa-icon>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      } @else {
+        <div class="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#11131A] px-6 py-14 text-center">
+          <fa-icon [icon]="faClockRotateLeft" class="text-2xl text-black/20 dark:text-white/20 mb-3"></fa-icon>
+          @if (historySearch().length > 0 || historyLanguageFilter() !== 'all') {
+            <h3 class="font-display text-base font-semibold text-[#121316] dark:text-white">
+              No matching translations
+            </h3>
+            <p class="mt-1 text-sm text-black/55 dark:text-white/55 max-w-md mx-auto">
+              Adjust your search text or language filter to locate stored translations.
+            </p>
+            <button
+              type="button"
+              (click)="resetHistoryFilters()"
+              class="mt-4 min-h-[40px] px-4 py-2 rounded-lg bg-[#FF4F28] hover:bg-[#E63D17] text-xs font-semibold text-white transition-colors"
+            >
+              Reset filters
+            </button>
+          } @else {
+            <h3 class="font-display text-base font-semibold text-[#121316] dark:text-white">
+              {{ activeTab() === 'phrasebook' ? 'No saved phrases yet' : 'No translation history yet' }}
+            </h3>
+            <p class="mt-1 text-sm text-black/55 dark:text-white/55 max-w-md mx-auto">
+              {{ activeTab() === 'phrasebook'
+                ? 'Bookmark translations in the Studio to keep reusable phrases organized here.'
+                : 'Completed translations automatically appear here for instant search and reuse.' }}
+            </p>
+            <button
+              type="button"
+              (click)="setTab('studio')"
+              class="mt-4 min-h-[40px] px-4 py-2 rounded-lg bg-[#FF4F28] hover:bg-[#E63D17] text-xs font-semibold text-white transition-colors"
+            >
+              Open Studio
+            </button>
+          }
+        </div>
+      }
+    }
+  </main>
+
+  <!-- Quiet Minimal Footer -->
+  <footer class="border-t border-black/10 dark:border-white/10 bg-[#F5F3EE]/80 dark:bg-[#090A0F]/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-black/50 dark:text-white/50">
+      <span>Lexis Translation Studio <span aria-hidden="true">·</span> 108 Languages</span>
+      <div class="flex items-center gap-5">
+        @if (historyEntries().length > 0) {
+          <button
+            type="button"
+            (click)="exportHistoryJson()"
+            class="hover:text-[#121316] dark:hover:text-white transition-colors whitespace-nowrap"
+          >
+            Export JSON
+          </button>
+        }
+        <button
+          type="button"
+          (click)="openCommandPalette()"
+          class="hover:text-[#121316] dark:hover:text-white transition-colors whitespace-nowrap"
+        >
+          Command palette (⌘K)
+        </button>
+        <button
+          type="button"
+          (click)="openShortcutsModal()"
+          class="inline-flex items-center gap-1.5 hover:text-[#121316] dark:hover:text-white transition-colors whitespace-nowrap"
+        >
+          <fa-icon [icon]="faKeyboard" class="text-[11px]"></fa-icon>
+          <span>Shortcuts</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Command Palette Modal (Ctrl/Cmd + K) -->
+  @if (showCommandPalette()) {
+    <div
+      class="fixed inset-0 z-50 flex items-start justify-center pt-[14vh] p-4 bg-black/60 backdrop-blur-[2px]"
+      (click)="closeCommandPalette()"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Command palette"
+    >
+      <div
+        class="w-full max-w-lg rounded-xl border border-black/15 dark:border-white/15 bg-white dark:bg-[#14161E] shadow-2xl overflow-hidden"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="p-3 border-b border-black/10 dark:border-white/10 flex items-center gap-2.5">
+          <fa-icon [icon]="faMagnifyingGlass" class="text-xs text-[#FF4F28] ml-1"></fa-icon>
+          <input
+            #commandInput
+            type="text"
+            [formControl]="commandSearchControl"
+            placeholder="Jump to view, switch language, or load scenario..."
+            aria-label="Filter commands"
+            class="flex-1 bg-transparent text-sm text-[#121316] dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:outline-none"
+          />
+          <button
+            type="button"
+            (click)="closeCommandPalette()"
+            class="px-2 py-1 rounded border border-black/10 dark:border-white/10 font-mono text-[11px] text-black/50 dark:text-white/50"
+          >
+            Esc
+          </button>
+        </div>
+
+        <div class="max-h-80 overflow-y-auto p-1.5 divide-y divide-black/5 dark:divide-white/5">
+          @for (cmd of filteredCommands(); track cmd.id) {
+            <button
+              type="button"
+              (click)="runCommand(cmd)"
+              class="w-full min-h-[42px] px-3 py-2 rounded-lg flex items-center justify-between gap-3 text-left text-sm hover:bg-[#FF4F28]/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+            >
+              <span class="min-w-0">
+                <span class="block text-[#121316] dark:text-white font-medium truncate">{{ cmd.label }}</span>
+                <span class="block text-[11px] text-black/45 dark:text-white/45">{{ cmd.category }}</span>
+              </span>
+              @if (cmd.shortcut) {
+                <kbd class="px-2 py-0.5 rounded border border-black/10 dark:border-white/10 font-mono text-[11px] text-black/55 dark:text-white/55 shrink-0">
+                  {{ cmd.shortcut }}
+                </kbd>
+              }
+            </button>
+          } @empty {
+            <div class="py-8 text-center text-sm text-black/45 dark:text-white/45">
+              No matching commands.
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Keyboard Shortcuts Modal -->
+  @if (showShortcutsModal()) {
+    <div
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-[2px]"
+      (click)="closeShortcutsModal()"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="shortcuts-title"
+    >
+      <div
+        class="w-full max-w-md rounded-xl border border-black/15 dark:border-white/15 bg-white dark:bg-[#14161E] shadow-2xl p-6"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="flex items-center justify-between gap-4 mb-4">
+          <h2 id="shortcuts-title" class="font-display text-lg font-semibold text-[#121316] dark:text-white">
+            Keyboard shortcuts
+          </h2>
+          <button
+            type="button"
+            (click)="closeShortcutsModal()"
+            aria-label="Close shortcuts dialog"
+            class="min-w-[36px] min-h-[36px] inline-flex items-center justify-center rounded-lg text-black/45 dark:text-white/45 hover:text-[#121316] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4F28]"
+          >
+            <fa-icon [icon]="faXmark" class="text-sm"></fa-icon>
+          </button>
+        </div>
+
+        <div class="divide-y divide-black/10 dark:divide-white/10 text-sm">
+          <div class="py-3 flex items-center justify-between gap-4">
+            <span class="text-black/70 dark:text-white/75">Command palette</span>
+            <kbd class="px-2 py-1 rounded border border-black/10 dark:border-white/15 bg-[#F5F3EE] dark:bg-[#0B0C11] font-mono text-xs">
+              Ctrl / ⌘ + K
+            </kbd>
+          </div>
+          <div class="py-3 flex items-center justify-between gap-4">
+            <span class="text-black/70 dark:text-white/75">Translate text</span>
+            <kbd class="px-2 py-1 rounded border border-black/10 dark:border-white/15 bg-[#F5F3EE] dark:bg-[#0B0C11] font-mono text-xs">
+              Ctrl / ⌘ + Enter
+            </kbd>
+          </div>
+          <div class="py-3 flex items-center justify-between gap-4">
+            <span class="text-black/70 dark:text-white/75">Swap languages</span>
+            <kbd class="px-2 py-1 rounded border border-black/10 dark:border-white/15 bg-[#F5F3EE] dark:bg-[#0B0C11] font-mono text-xs">
+              Ctrl / ⌘ + Shift + S
+            </kbd>
+          </div>
+          <div class="py-3 flex items-center justify-between gap-4">
+            <span class="text-black/70 dark:text-white/75">Copy translation</span>
+            <kbd class="px-2 py-1 rounded border border-black/10 dark:border-white/15 bg-[#F5F3EE] dark:bg-[#0B0C11] font-mono text-xs">
+              Ctrl / ⌘ + Shift + C
+            </kbd>
+          </div>
+          <div class="py-3 flex items-center justify-between gap-4">
+            <span class="text-black/70 dark:text-white/75">Clear source / Close dialog</span>
+            <kbd class="px-2 py-1 rounded border border-black/10 dark:border-white/15 bg-[#F5F3EE] dark:bg-[#0B0C11] font-mono text-xs">
+              Esc
+            </kbd>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 </div>
